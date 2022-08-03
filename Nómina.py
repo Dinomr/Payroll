@@ -13,7 +13,7 @@ while go == "Si" or go == "SI" or go == "si" or go == "sI" or go == "S" or go ==
         if id > 10**15:
             print("Debes escribir un número que contenga menos de 16 digitos")
             continue
-        if id <10**8:
+        if id <10**6:
             print("No hay números de identificación tan cortos, por favor ingresa un número válido")
             continue
         else:
@@ -127,10 +127,15 @@ while go == "Si" or go == "SI" or go == "si" or go == "sI" or go == "S" or go ==
         salaryarr = salary*(worked/30) - health - pension + sub
 
     """Graficación de los datos del usuario"""
+    tx = open("print.txt", "a")
     if name2 == "":
-        print(f"Tu nombre completo es: {name1} {last_name1} {last_name2}\nTu número de identificación es: {id}\nTu subsidio de transporte es: {sub}\nLo que debes de aportar a salud es: {health}\nTu aporte a pensión es: {pension}\nTus días trabajados son: {worked}\nTu paga por los días que trabajaste es: {salary*(worked/30)}\nTu sueldo total es {salaryarr}")
+        tx.write(f"Tu nombre completo es: {name1} {last_name1} {last_name2}\nTu número de identificación es: {id}\nTu subsidio de transporte es: {sub}\nLo que debes de aportar a salud es: {health}\nTu aporte a pensión es: {pension}\nTus días trabajados son: {worked}\nTu paga por los días que trabajaste es: {salary*(worked/30)}\nTu sueldo total es {salaryarr}\n\n")
     else:
-        print(f"Tu nombre completo es: {name1} {name2} {last_name1} {last_name2}\nTu número de identificación es: {id}\nTu subsidio de transporte es: {sub}\nLo que debes de aportar a salud es: {health}\nTu aporte a pensión es: {pension}\nTus días trabajados son: {worked}\nTu paga por los días que trabajaste es: {salary*(worked/30)}\nTu sueldo total es {salaryarr}")
+        tx.write(f"Tu nombre completo es: {name1} {name2} {last_name1} {last_name2}\nTu número de identificación es: {id}\nTu subsidio de transporte es: {sub}\nLo que debes de aportar a salud es: {health}\nTu aporte a pensión es: {pension}\nTus días trabajados son: {worked}\nTu paga por los días que trabajaste es: {salary*(worked/30)}\nTu sueldo total es {salaryarr}\n\n")
+    tx.close
+    tx = open("print.txt","r")
+    print(tx.read())
+    tx.close
     go = ""
     while go.isalpha() != True or go.__len__() > 2:
         go = input("¿Deseas realizar otra nómina? responde con un si o un no\n")
